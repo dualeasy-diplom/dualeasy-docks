@@ -1,0 +1,178 @@
+GET http://localhost:8080/auth/validate?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0NDQ4MjE5MiwiZXhwIjoxNzQ0NDg1NzkyfQ.5A7m3NM-woPRiiz6djZ6Bn5OrE_RPEOTO6qGI49tSXw
+###
+
+
+GET http://localhost:8000/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0NDUyMDE4NSwiZXhwIjoxNzQ0NjA2NTg1fQ.7do07Yqhxx5YKOXMTIiOQHLXuAWQOwULatExjFvvlmc
+###
+
+POST http://localhost:8000/test
+Content-Type: application/json
+
+{
+  "body": "123"
+}
+
+###
+
+POST http://localhost:8000/tesk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0NDUyMDE4NSwiZXhwIjoxNzQ0NjA2NTg1fQ.7do07Yqhxx5YKOXMTIiOQHLXuAWQOwULatExjFvvlmc
+Content-Type: application/json
+
+{
+  "body": "123"
+}
+
+
+
+### Создание услуги
+POST http://localhost:8000/services/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImNsaWVudElkIjoiMSIsImlhdCI6MTc0Njg5NTcxOSwiZXhwIjoxNzQ2OTgyMTE5fQ.syMWRyl19UrjuWXO4-QaeG2HJPkzwvIRbGD87F1XVBc
+Content-Type: application/json
+
+{
+  "name": "name1",
+  "description": "text",
+  "price": 123.32
+}
+
+###
+### Удаление услуги
+DELETE http://localhost:8000/services/2
+Authorization: Bearer Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0NjM1MjAzMiwiZXhwIjoxNzQ2NDM4NDMyfQ.SOl-FtozZXSitqkHOoiNtlREA9O-fqvp7AGD01jhi_A
+
+###
+### Создание услуги
+POST http://localhost:8000/feedback
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0NjM1MjI2MywiZXhwIjoxNzQ2NDM4NjYzfQ.mV0663LOjxZnccvfIsqOnZXyu__hWh5Du72D0uWjJsg
+Content-Type: application/json
+
+{
+  "serviceId": "10",
+  "score": 4,
+  "text": "123"
+}
+
+###
+### Создание услуги
+GET http://localhost:8000/feedback/service/10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0NjM1MjI2MywiZXhwIjoxNzQ2NDM4NjYzfQ.mV0663LOjxZnccvfIsqOnZXyu__hWh5Du72D0uWjJsg
+Content-Type: application/json
+
+
+###
+### Получени
+GET http://localhost:8000/service/services
+Content-Type: application/json
+
+
+###
+
+# curl -X GET http://localhost:9200/services/_search?pretty
+GET http://localhost:9200/services/_search?pretty
+
+###
+
+# curl -X GET http://localhost:9200/_cat/indices?v
+GET http://localhost:9200/_cat/indices?v
+
+###
+# curl -X DELETE http://localhost:9200/services
+DELETE http://localhost:9200/services
+
+###
+
+
+# curl -X GET http://localhost:9200/_cat/indices?v
+GET http://localhost:8110/test
+
+
+###
+
+# curl -X PUT "http://localhost:9200/services" -H 'Content-Type: application/json' -d '
+#{
+#  "settings": {
+#    "number_of_shards": 1,
+#    "number_of_replicas": 0
+#  },
+#  "mappings": {
+#    "properties": {
+#      "id":         { "type": "long" },
+#      "name":       { "type": "text" },
+#      "description":{ "type": "text" },
+#      "rating":     { "type": "float" },
+#      "price":      { "type": "float" }
+#    }
+#  }
+#}'
+PUT http://localhost:9200/services
+Content-Type: application/json
+
+
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "name": {
+        "type": "text"
+      },
+      "description": {
+        "type": "text"
+      }
+    }
+  }
+}
+
+###
+
+
+
+GET http://localhost:8110/search?keyword=description text
+
+
+### Получение услуг пользователя
+POST http://localhost:8000/slots
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImNsaWVudElkIjoiMSIsImlhdCI6MTc0Njg5NTcxOSwiZXhwIjoxNzQ2OTgyMTE5fQ.syMWRyl19UrjuWXO4-QaeG2HJPkzwvIRbGD87F1XVBc
+Content-Type: application/json
+
+{
+  "slots": [
+    {
+      "startTime": "2025-05-12T10:00",
+      "endTime": "2025-05-12T13:00"
+    },
+    {
+      "startTime": "2025-05-13T15:00",
+      "endTime": "2025-05-13T16:30"
+    }
+  ]
+}
+
+### Получение услуг пользователя
+GET http://localhost:8000/slots/owner/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImNsaWVudElkIjoiMSIsImlhdCI6MTc0Njg5NTcxOSwiZXhwIjoxNzQ2OTgyMTE5fQ.syMWRyl19UrjuWXO4-QaeG2HJPkzwvIRbGD87F1XVBc
+Content-Type: application/json
+
+### Запись на услугу
+POST http://localhost:8000/slots/1/book
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJXZW5vcy5tYXRjaEB5YW5kZXgucnUiLCJyb2xlIjoiVVNFUiIsImNsaWVudElkIjoiMSIsImlhdCI6MTc0Njg5NTcxOSwiZXhwIjoxNzQ2OTgyMTE5fQ.syMWRyl19UrjuWXO4-QaeG2HJPkzwvIRbGD87F1XVBc
+Content-Type: application/json
+
+{
+  "serviceId": 1,
+  "note": "Хочу дизайнерский стул"
+}
+
+### Получение списка пользователей по id
+POST http://localhost:8120/user/all
+Content-Type: application/json
+
+{
+  "clientIds": ["1", "2"]
+}
